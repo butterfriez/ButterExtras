@@ -1,4 +1,4 @@
-package com.examplemod.config
+package com.butter.config
 
 import gg.essential.vigilance.Vigilant
 import java.awt.Color
@@ -6,8 +6,8 @@ import java.io.File
 
 
 object Config : Vigilant(
-    File(ExampleMod.configDirectory, "config.toml"),
-    ExampleMod.metadata.name
+    File(ButterExtras.configDirectory, "config.toml"),
+    ButterExtras.metadata.name
 ) {
     var demoSwitch = false
     var demoSelector = 0

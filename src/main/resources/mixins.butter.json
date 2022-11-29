@@ -1,0 +1,9 @@
+{
+  "package": "com.butter.mixin",
+  "refmap": "mixins.butter.refmap.json",
+  "minVersion": "0.7",
+  "compatibilityLevel": "JAVA_8",
+  "client": [
+    "MixinGuiMainMenu"
+  ]
+}
