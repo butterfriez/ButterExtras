@@ -1,5 +1,7 @@
 package com.butter.gui
 
+import ButterExtras
+import com.butter.config.Config
 import com.butter.gui.components.Button
 import gg.essential.elementa.ElementaVersion
 import gg.essential.elementa.WindowScreen
@@ -7,11 +9,12 @@ import gg.essential.elementa.components.UIBlock
 import gg.essential.elementa.components.UIText
 import gg.essential.elementa.constraints.CenterConstraint
 import gg.essential.elementa.constraints.ChildBasedMaxSizeConstraint
-import gg.essential.elementa.constraints.RelativeConstraint
 import gg.essential.elementa.constraints.SiblingConstraint
 import gg.essential.elementa.dsl.*
 import net.minecraft.client.Minecraft
 import java.awt.Color
+import java.awt.Desktop
+import java.net.URI
 
 class MainGui : WindowScreen(ElementaVersion.V1) {
     var MainBlock: UIBlock = UIBlock(Color(80, 80, 80, 80)).constrain {
@@ -31,10 +34,20 @@ class MainGui : WindowScreen(ElementaVersion.V1) {
     init {
         Button("Config").constrain {
             x = CenterConstraint()
-            y = SiblingConstraint() + RelativeConstraint(0.75f)
+            y = SiblingConstraint() + 10.pixels()
             width = 200.pixels()
             height = 20.pixels()
-        }.childOf(window)
+        }.childOf(window).onMouseClick {
+            ButterExtras.currentGui = Config.gui()
+        }
+        Button("Github").constrain {
+            x = CenterConstraint()
+            y = SiblingConstraint() + 10.pixels()
+            width = 200.pixels()
+            height = 20.pixels()
+        }.childOf(window).onMouseClick {
+            Desktop.getDesktop().browse(URI.create("https://github.com/butterfriez/ButterExtras"))
+        }
     }
 
     override fun setWorldAndResolution(mc: Minecraft, width: Int, height: Int) {

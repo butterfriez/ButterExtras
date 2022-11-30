@@ -8,8 +8,7 @@ import kotlinx.serialization.decodeFromString
 
 @Serializable
 data class PersistentData(
-    var exampleData: Map<String, String> = mapOf("key1" to "entry1"),
-    var moreExampleData: Int = 5
+    var firstLoad:Boolean = true
 ) {
 
     fun save() {

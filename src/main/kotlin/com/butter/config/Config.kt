@@ -1,7 +1,7 @@
 package com.butter.config
 
+import ButterExtras
 import gg.essential.vigilance.Vigilant
-import java.awt.Color
 import java.io.File
 
 
@@ -9,42 +9,15 @@ object Config : Vigilant(
     File(ButterExtras.configDirectory, "config.toml"),
     ButterExtras.metadata.name
 ) {
-    var demoSwitch = false
-    var demoSelector = 0
-    var demoColor : Color = Color.WHITE
-    var demoText = ""
+    var StampedChat:Boolean = false
 
     init {
-        category("One category") {
+        category("Misc") {
             switch(
-                ::demoSwitch,
-                name = "Switch",
-                description = "This is a switch"
+                ::StampedChat,
+                description = "Adds a timestamp to every chat message.",
+                name = "Stamped Chat"
             )
-
-            subcategory("An additional category") {
-                selector(
-                    ::demoSelector,
-                    name = "Selector",
-                    description = "This is a selector",
-                    options = listOf("Option 1", "Option 2", "Option 3")
-                )
-                color(
-                    ::demoColor,
-                    name = "Color",
-                    description = "This sets a color"
-                )
-            }
-        }
-
-        category("Another category") {
-            text(
-                ::demoText,
-                name = "Text",
-                description = "This is text",
-                placeholder = "This is some placeholder text."
-            )
-
         }
     }
 
