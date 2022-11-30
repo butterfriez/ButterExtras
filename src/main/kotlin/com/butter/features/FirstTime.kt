@@ -6,6 +6,7 @@ import gg.essential.universal.UChat
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 
+//FIX LATER//
 object FirstTime{
     @SubscribeEvent
     fun onTickEvent(event: TickEvent.ClientTickEvent) {
