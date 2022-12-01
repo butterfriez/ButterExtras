@@ -10,13 +10,18 @@ object Config : Vigilant(
     ButterExtras.metadata.name
 ) {
     var StampedChat:Boolean = false
-
+    var ChatCopy:Boolean = false
     init {
         category("Misc") {
             switch(
                 ::StampedChat,
                 description = "Adds a timestamp to every chat message.",
                 name = "Stamped Chat"
+            )
+            switch(
+                ::ChatCopy,
+                description = "Adds a message click event on each message in chat, when clicked it copies the message.",
+                name = "Chat Copy"
             )
         }
     }

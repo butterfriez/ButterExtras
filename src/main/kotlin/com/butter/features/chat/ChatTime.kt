@@ -1,4 +1,4 @@
-package com.butter.features
+package com.butter.features.chat
 
 import ButterExtras
 import gg.essential.universal.UChat
@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ChatTime {
+object ChatTime {
     @SubscribeEvent(receiveCanceled = true)
     fun receivedEvent(e:ClientChatReceivedEvent) {
         if(e.message.formattedText.isNotEmpty() && e.type == 0.toByte() && ButterExtras.config.StampedChat) {

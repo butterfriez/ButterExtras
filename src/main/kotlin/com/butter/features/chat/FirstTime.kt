@@ -1,4 +1,4 @@
-package com.butter.features
+package com.butter.features.chat
 
 import ButterExtras.Companion.persistentData
 import com.butter.util.Chat

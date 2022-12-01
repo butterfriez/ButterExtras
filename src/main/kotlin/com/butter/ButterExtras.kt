@@ -1,8 +1,9 @@
 import com.butter.commands.MainCommand
 import com.butter.config.Config
 import com.butter.config.PersistentData
-import com.butter.features.ChatTime
-import com.butter.features.FirstTime
+import com.butter.features.chat.ChatTime
+import com.butter.features.chat.CopyChat
+import com.butter.features.chat.FirstTime
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraftforge.client.ClientCommandHandler
@@ -40,8 +41,9 @@ class ButterExtras {
 
         listOf(
             this,
-            ChatTime(),
-            FirstTime
+            ChatTime,
+            FirstTime,
+            CopyChat
         ).forEach(MinecraftForge.EVENT_BUS::register)
     }
 
