@@ -81,7 +81,7 @@ class ButterExtras {
         lateinit var metadata: ModMetadata
 
         val keyBinds = arrayOf(
-            KeyBinding("Auto Bazaar Claim Order", Keyboard.KEY_NONE, "Butter Extras")
+            KeyBinding("Auto Bazaar Claim Order", Keyboard.KEY_BACKSLASH, "Butter Extras")
         )
 
         var autoBz = false
