@@ -17,14 +17,14 @@ import java.awt.Desktop
 import java.net.URI
 
 class MainGui : WindowScreen(ElementaVersion.V1) {
-    var MainBlock: UIBlock = UIBlock(Color(80, 80, 80, 80)).constrain {
+    private var MainBlock: UIBlock = UIBlock(Color(80, 80, 80, 80)).constrain {
         x = CenterConstraint()
         y = 10.pixels()
         width = ChildBasedMaxSizeConstraint() + 20.pixels()
         height = ChildBasedMaxSizeConstraint() + 20.pixels()
     } childOf window
 
-    var Text:UIText = UIText("Butter Extras").constrain {
+    private var Text:UIText = UIText("Butter Extras").constrain {
         color = Color.white.toConstraint()
         x = CenterConstraint()
         y = CenterConstraint()

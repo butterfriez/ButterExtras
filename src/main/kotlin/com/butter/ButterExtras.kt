@@ -5,7 +5,6 @@ import com.butter.features.chat.ChatTime
 import com.butter.features.chat.CopyChat
 import com.butter.features.chat.FirstTime
 import com.butter.features.gui.GuiFeatures
-import gg.essential.universal.UChat
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraft.client.settings.KeyBinding
@@ -17,7 +16,6 @@ import net.minecraftforge.fml.common.ModMetadata
 import net.minecraftforge.fml.common.event.FMLInitializationEvent
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
-import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent
 import net.minecraftforge.fml.common.gameevent.TickEvent
 import org.lwjgl.input.Keyboard
 import java.io.File
@@ -34,11 +32,12 @@ class ButterExtras {
     @Mod.EventHandler
     fun preInit(event: FMLPreInitializationEvent) {
         metadata = event.modMetadata
-        val directory = File(event.modConfigurationDirectory, event.modMetadata.modId)
+        val directory = File(event.modConfigurationDirectory, "butterextras")
         directory.mkdirs()
         configDirectory = directory
         persistentData = PersistentData.load()
-        config = Config
+        config = Config.apply { this.initialize() }
+        print(event.modConfigurationDirectory)
     }
 
     @Mod.EventHandler
@@ -53,7 +52,7 @@ class ButterExtras {
             GuiFeatures,
         ).forEach(MinecraftForge.EVENT_BUS::register)
 
-        keyBinds.forEach(ClientRegistry::registerKeyBinding)
+        keyBinds.values.forEach(ClientRegistry::registerKeyBinding)
     }
 
     @SubscribeEvent
@@ -63,13 +62,6 @@ class ButterExtras {
         currentGui = null
     }
 
-    @SubscribeEvent
-    fun onKey(e: KeyInputEvent){
-        if(keyBinds[0].isPressed && config.AutoBazaarClaimOrder) {
-            UChat.say("/bz")
-            autoBz = true
-        }
-    }
     companion object {
         val mc: Minecraft = Minecraft.getMinecraft()
         var currentGui: GuiScreen? = null
@@ -80,10 +72,8 @@ class ButterExtras {
 
         lateinit var metadata: ModMetadata
 
-        val keyBinds = arrayOf(
-            KeyBinding("Auto Bazaar Claim Order", Keyboard.KEY_BACKSLASH, "Butter Extras")
+        val keyBinds = mapOf(
+            "AutoBazaar" to KeyBinding("Auto Claim Bazaar Orders", Keyboard.KEY_NONE, "Butter Extras"),
         )
-
-        var autoBz = false
     }
 }

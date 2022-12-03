@@ -6,8 +6,7 @@ import java.io.File
 
 
 object Config : Vigilant(
-    File(ButterExtras.configDirectory, "config.toml"),
-    ButterExtras.metadata.name
+    File(ButterExtras.configDirectory, "config.toml"), ButterExtras.metadata.name
 ) {
     //chat
     var StampedChat:Boolean = false
@@ -16,6 +15,7 @@ object Config : Vigilant(
     //gui
     var AutoBazaarClaimOrder = false
     var AutoBazaarClaimClaim = 0
+    var AutoBazaarClaimDelay = 1000
 
     init {
         category("Misc") {
@@ -41,10 +41,21 @@ object Config : Vigilant(
                     name = "Auto Bazaar Claim Method",
                     options = listOf("All", "Self")
                 )
+                slider(
+                    ::AutoBazaarClaimDelay,
+                    description = "Delay when feature has to click.",
+                    name = "Auto Bazaar Claim Delay",
+                    min = 100,
+                    max = 1000
+                )
             }
         }
 
-        addDependency("AutoBazaarClaimClaim", "AutoBazaarClaimOrder")
+        //Bazaar
+        arrayOf(
+            "AutoBazaarClaimClaim",
+            "AutoBazaarClaimDelay"
+        ).forEach { addDependency(it, "AutoBazaarClaimOrder") }
     }
 
 

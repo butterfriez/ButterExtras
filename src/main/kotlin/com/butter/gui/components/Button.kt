@@ -10,7 +10,7 @@ import gg.essential.universal.USound
 import java.awt.Color
 
 class Button @JvmOverloads constructor(val text: String, val tall: Boolean = false, val long: Boolean = false): UIBlock(Color(80, 80, 80, 80)){
-    val t = UIText(text).constrain {
+    private val t = UIText(text).constrain {
         x = CenterConstraint()
         y = CenterConstraint()
         color = Color.WHITE.toConstraint()
