@@ -9,8 +9,14 @@ object Config : Vigilant(
     File(ButterExtras.configDirectory, "config.toml"),
     ButterExtras.metadata.name
 ) {
+    //chat
     var StampedChat:Boolean = false
     var ChatCopy:Boolean = false
+
+    //gui
+    var AutoBazaarClaimOrder = false
+    var AutoBazaarClaimClaim = 0
+
     init {
         category("Misc") {
             switch(
@@ -23,7 +29,22 @@ object Config : Vigilant(
                 description = "Adds a message click event on each message in chat, when clicked it copies the message.",
                 name = "Chat Copy"
             )
+            switch(
+                ::AutoBazaarClaimOrder,
+                description = "When click keybind, it automatically claims bazaar order. &4(MUST HAVE BOOSTER COOKIE ACTIVE)",
+                name = "Auto Bazaar Order"
+            )
+            subcategory("Auto Bazaar") {
+                selector(
+                    ::AutoBazaarClaimClaim,
+                    description = "How to claim the order.",
+                    name = "Auto Bazaar Claim Method",
+                    options = listOf("All", "Self")
+                )
+            }
         }
+
+        addDependency("AutoBazaarClaimClaim", "AutoBazaarClaimOrder")
     }
 
 
