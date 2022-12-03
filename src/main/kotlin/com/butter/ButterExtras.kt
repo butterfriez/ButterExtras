@@ -4,6 +4,7 @@ import com.butter.config.PersistentData
 import com.butter.features.chat.ChatTime
 import com.butter.features.chat.CopyChat
 import com.butter.features.chat.FirstTime
+import com.butter.features.gui.GuiFeatures
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.GuiScreen
 import net.minecraftforge.client.ClientCommandHandler
@@ -43,7 +44,8 @@ class ButterExtras {
             this,
             ChatTime,
             FirstTime,
-            CopyChat
+            CopyChat,
+            GuiFeatures,
         ).forEach(MinecraftForge.EVENT_BUS::register)
     }
 
