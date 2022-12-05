@@ -63,7 +63,7 @@ object Config : Vigilant(
             subcategory("AH Features") {
                 selector(
                     ::AutoConfirmAHMethod,
-                    description = "Way of pressing confirm on item.",
+                    description = "Way of pressing confirm on item &4Only Mouse Click works.",
                     name = "Auto Confirm AH Click Method",
                     options = listOf("Mouse Click", "Packet")
                 )
@@ -71,7 +71,7 @@ object Config : Vigilant(
                     ::AutoConfirmAHClickDelay,
                     description = "Wait time to click.",
                     name = "Auto Confirm Ah Click Delay",
-                    min = 100,
+                    min = 0,
                     max = 1000
                 )
             }
