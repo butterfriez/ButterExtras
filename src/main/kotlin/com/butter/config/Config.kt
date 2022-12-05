@@ -8,6 +8,8 @@ import java.io.File
 object Config : Vigilant(
     File(ButterExtras.configDirectory, "config.toml"), ButterExtras.metadata.name
 ) {
+    //vars
+    var Webhook:String = ""
     //chat
     var StampedChat:Boolean = false
     var ChatCopy:Boolean = false
@@ -22,16 +24,25 @@ object Config : Vigilant(
     var AutoConfirmAHClickDelay = 1000
     init {
         category("Misc") {
+            text(
+                ::Webhook,
+                name = "Discord Webhook",
+                description = "Webhook used for features.",
+                placeholder = "Place here."
+            )
+
             switch(
                 ::StampedChat,
                 description = "Adds a timestamp to every chat message.",
                 name = "Stamped Chat"
             )
+
             switch(
                 ::ChatCopy,
                 description = "Adds a message click event on each message in chat, when clicked it copies the message.",
                 name = "Chat Copy"
             )
+
             switch(
                 ::AutoBazaarClaimOrder,
                 description = "When click keybind, it automatically claims bazaar order. &4(MUST HAVE BOOSTER COOKIE ACTIVE)",

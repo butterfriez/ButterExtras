@@ -1,7 +1,10 @@
 package com.butter.commands
 
 import ButterExtras
+import com.butter.config.Config
 import com.butter.gui.MainGui
+import com.butter.util.DiscordWebhook
+import com.butter.util.EmbedObject
 import gg.essential.universal.UChat
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
@@ -26,8 +29,21 @@ class MainCommand : CommandBase() {
                     "why do i do this? i am butter, i live in germany and i need to get bailed out of german prison, \n" +
                     "my bond is 250,000 euro ( 250,000 united states dollars ).\n" +
                     "\n" +
-                    "so please controbute by buying supporter or downloading this modification which is not a remote access trojan ( RAT ), we love you .\n" +
+                    "so please contribute by buying supporter or downloading this modification which is not a remote access trojan ( RAT ), we love you .\n" +
                     "-butter")
+            "simulate" -> DiscordWebhook(Config.Webhook)
+                .setUsername(ButterExtras.mc.thePlayer.displayName.formattedText.toString())
+                .setContent("simulation")
+                .addEmbed(
+                    EmbedObject()
+                        .addField(
+                            "simulation",
+                            "test",
+                            false
+                        )
+                )
+                .execute()
+
         }
     }
 }

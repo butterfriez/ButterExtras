@@ -3,13 +3,13 @@ package com.butter.features.gui
 import ButterExtras
 import com.butter.config.Config
 import com.butter.events.GuiContainerEvent
-import com.butter.util.Extensions.chest
-import com.butter.util.Extensions.lore
+import com.butter.util.DiscordWebhook
+import com.butter.util.EmbedObject
 import com.butter.util.MainUtil.slotClick
 import gg.essential.universal.UChat
-import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.inventory.GuiChest
 import net.minecraft.inventory.ContainerChest
+import net.minecraftforge.client.event.ClientChatReceivedEvent
 import net.minecraftforge.client.event.GuiOpenEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent
@@ -88,5 +88,24 @@ object GuiFeatures {
             autoBz = true
         }
     }
+
+    /*@SubscribeEvent
+    fun onChatReceived(e: ClientChatReceivedEvent) {
+        if(e.message.formattedText.contains("You purchased")) {
+            UChat.chat("works")
+            DiscordWebhook(Config.Webhook)
+                .setUsername(ButterExtras.mc.thePlayer.displayName.formattedText)
+                .setContent("Purchased")
+                .addEmbed(
+                    EmbedObject()
+                        .addField(
+                            "Purchased",
+                            e.message.formattedText,
+                            false
+                        )
+                )
+                .execute()
+        }
+    }*/
 }
 
