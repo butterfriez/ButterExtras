@@ -1,5 +1,6 @@
 package com.butter.util
 
+import net.minecraft.network.play.client.C0EPacketClickWindow
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -17,5 +18,9 @@ object MainUtil {
             0,
             ButterExtras.mc.thePlayer
         )
+    }
+
+    fun slotClickPacket() {
+        var packet: C0EPacketClickWindow = C0EPacketClickWindow()
     }
 }

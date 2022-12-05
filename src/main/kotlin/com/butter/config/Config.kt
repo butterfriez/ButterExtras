@@ -17,6 +17,9 @@ object Config : Vigilant(
     var AutoBazaarClaimClaim = 0
     var AutoBazaarClaimDelay = 1000
 
+    var AutoConfirmAH = false
+    var AutoConfirmAHMethod = 0
+    var AutoConfirmAHClickDelay = 1000
     init {
         category("Misc") {
             switch(
@@ -34,10 +37,11 @@ object Config : Vigilant(
                 description = "When click keybind, it automatically claims bazaar order. &4(MUST HAVE BOOSTER COOKIE ACTIVE)",
                 name = "Auto Bazaar Order"
             )
+
             subcategory("Auto Bazaar") {
                 selector(
                     ::AutoBazaarClaimClaim,
-                    description = "How to claim the order.",
+                    description = "How to claim the order &4This does nothing right now.",
                     name = "Auto Bazaar Claim Method",
                     options = listOf("All", "Self")
                 )
@@ -49,6 +53,28 @@ object Config : Vigilant(
                     max = 1000
                 )
             }
+
+            switch(
+                ::AutoConfirmAH,
+                description = "Automatically clicks AH confirm button on an item.",
+                name = "Auto Confirm AH"
+            )
+
+            subcategory("AH Features") {
+                selector(
+                    ::AutoConfirmAHMethod,
+                    description = "Way of pressing confirm on item.",
+                    name = "Auto Confirm AH Click Method",
+                    options = listOf("Mouse Click", "Packet")
+                )
+                slider(
+                    ::AutoConfirmAHClickDelay,
+                    description = "Wait time to click.",
+                    name = "Auto Confirm Ah Click Delay",
+                    min = 100,
+                    max = 1000
+                )
+            }
         }
 
         //Bazaar
@@ -56,6 +82,12 @@ object Config : Vigilant(
             "AutoBazaarClaimClaim",
             "AutoBazaarClaimDelay"
         ).forEach { addDependency(it, "AutoBazaarClaimOrder") }
+
+        //AH
+        arrayOf(
+            "AutoConfirmAHMethod",
+            "AutoConfirmAHClickDelay"
+        ).forEach { addDependency(it, "AutoConfirmAH") }
     }
 
 
